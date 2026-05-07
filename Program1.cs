@@ -1,4 +1,3 @@
-// Program1.cs
 using System;
 
 class Program
