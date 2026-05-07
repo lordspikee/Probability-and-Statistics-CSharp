@@ -1,0 +1,92 @@
+// Program1.cs
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] data = { 115, 182, 191, 31, 196, 1099, 5, 172, 10, 179,
+                       83, 21, 20, 21, 186, 177, 195, 193, 188, 199,
+                       62, 109, 105, 183, 110 };
+
+        int n = data.Length;
+
+        Array.Sort(data);
+
+        double sum = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            sum = sum + data[i];
+        }
+
+        double mean = sum / n;
+
+        double median = data[n / 2];
+
+        int mode = data[0];
+        int maxCount = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            int count = 0;
+
+            for (int j = 0; j < n; j++)
+            {
+                if (data[i] == data[j])
+                {
+                    count++;
+                }
+            }
+
+            if (count > maxCount)
+            {
+                maxCount = count;
+                mode = data[i];
+            }
+        }
+
+        double varianceSum = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            varianceSum = varianceSum + Math.Pow(data[i] - mean, 2);
+        }
+
+        double variance = varianceSum / n;
+
+        double standardDeviation = Math.Sqrt(variance);
+
+        int range = data[n - 1] - data[0];
+
+        double Q1 = data[n / 4];
+        double Q2 = median;
+        double Q3 = data[(3 * n) / 4];
+
+        double P20 = data[(20 * n) / 100];
+        double P50 = median;
+
+        double IQR = Q3 - Q1;
+
+        double deviationSum = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            deviationSum = deviationSum + (data[i] - mean);
+        }
+
+        Console.WriteLine("Mean = " + mean);
+        Console.WriteLine("Mode = " + mode);
+        Console.WriteLine("Median = " + median);
+        Console.WriteLine("Variance = " + variance);
+        Console.WriteLine("P20 = " + P20);
+        Console.WriteLine("P50 = " + P50);
+        Console.WriteLine("Q1 = " + Q1);
+        Console.WriteLine("Q2 = " + Q2);
+        Console.WriteLine("Q3 = " + Q3);
+        Console.WriteLine("Range = " + range);
+        Console.WriteLine("Interquartile Range = " + IQR);
+        Console.WriteLine("Standard Deviation = " + standardDeviation);
+        Console.WriteLine("Summation of Deviations = " + deviationSum);
+    }
+}
